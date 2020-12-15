@@ -1,71 +1,22 @@
-# Poetry Template
+# Django Linear
 
-Django app template, using `poetry-python` as dependency manager.
+Django app to display Linear issues via the Django admin site.
 
-This project is a template that can be cloned and re-used for redistributable apps.
+This app is designed to enable 'readonly' user access to Linear issues via the standard Django admin site.
 
-It includes the following:
+Motivation
 
-* `poetry` for dependency management
-* `isort`, `black`, `pylint` and `flake8` linting
-* `pre-commit` to run linting
-* `mypy` for type checking
-* `tox` and `travis` for builds and CI
+We replaced our use of Jira with Linear a while back, and haven't looked back - we have "Dev", "Design" and "Data" teams, and we use Linear to manage work internally. However, one thing that would improve it for our use case (small company, lots of engaged internal stakeholders) would be the ability to share the status of issues more widely through the company. This doesn't need to be sophisticated, we don't need to accept edits / comments - it's just a status update - for any issue, who is working on it, what its status is, which cycle / project it is part of. 
 
-There are default config files for the linting and mypy.
+Approach
 
-## Principles
+We have a large "backoffice" project written in Django, and all our internal staff have accounts set up, and know their way around the Django admin site. Linear has a GraphQL API. Putting these two together, it ought to be simple to be able to sync Linear updates to a Django model, and to surface those via the admin site. 
 
-The motivation for this project is to provide a consistent set of standards across all YunoJuno public Python/Django projects. The principles we want to encourage are:
+The existing Google Sheets integration is almost good enough - but it should be possible to do something a little neater.
 
-* Simple for developers to get up-and-running:
-    * Install all dev dependencies in an isolated environment
-    * Run complete tox suite locally
-* Consistent style:
-    * Common formatting with `isort` and `black`
-    * Common patterns with `pylint` and `flake8`
-* Full type hinting
+ID | Team | Project | Milestone | Task | Estimate | Assigned to | Status
+--- | --- | --- | --- | --- | --- | --- | ---
+DEV-1 | Development | Flux Capacitor | Test Run | Build fuel pump | XL | Doc | In Progress
+DES-1 | Design | Flux Capacitor | Investor Demo | Design logo | L | Marty | In Progress
 
-## Versioning
-
-It's 2020, Python2 is officially deprecated, and we run our core platform on recent releases (Python 3.8 and Django 2.2 at the time of writing). Taking out lead from Django itself, we only support Python 3.8/7/6 and Django 2.2/3.0. As new versions arrive we will deprecate older versions at the point at which maintaining becomes a burden. Typically this is when we start to have to incorporate conditional imports into modules. When an older version of Python / Django is deprecated, the last supported version will be tagged as such. In the unlikely event that any bug fixes need to be applied to an old version, they will be done on a branch off the last known good version. They will not be released to PyPI.
-
-## Tests
-
-#### Tests package
-The package tests themselves are _outside_ of the main library code, in a package that is itself a Django app (it contains `models`, `settings`, and any other artifacts required to run the tests (e.g. `urls`).) Where appropriate, this test app may be runnable as a Django project - so that developers can spin up the test app and see what admin screens look like, test migrations, etc.
-
-#### Running tests
-The tests themselves use `pytest` as the test runner. If you have installed the `poetry` evironment, you can run them thus:
-
-```
-$ poetry run pytest
-```
-
-or 
-
-```
-$ poetry shell
-(my_app) $ pytest
-```
-
-The full suite is controlled by `tox`, which contains a set of environments that will format (`fmt`), lint, and test against all support Python + Django version combinations.
-
-```
-$ tox
-...
-______________________ summary __________________________
-  fmt: commands succeeded
-  lint: commands succeeded
-  mypy: commands succeeded
-  py36-django22: commands succeeded
-  py36-django30: commands succeeded
-  py37-django22: commands succeeded
-  py37-django30: commands succeeded
-  py38-django22: commands succeeded
-  py38-django30: commands succeeded
-```
-
-#### CI
-
-There is a `.travis.yml` file that can be used as a baseline to run all of the tests on Travis.
+The advantage of having the data in Django is that we a.) get filtering by default, and b.) we can start adding user-specific filters - notably subscriptions.
