@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Heroku Release runner.
+# This script is run after every push, manual or otherwise.
+python manage.py migrate

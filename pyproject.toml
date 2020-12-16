@@ -27,6 +27,11 @@ packages = [{ include = "linear" }]
 python = "^3.7"
 django = "^3.0"
 requests = "*"
+dj_database_url = { version="*", optional=true }
+psycopg2 = { version="*", optional=true }
+gunicorn = { version="*", optional=true }
+whitenoise = { version="*", optional=true }
+
 
 [tool.poetry.dev-dependencies]
 pytest = "*"
@@ -43,6 +48,9 @@ pre-commit = "*"
 black = {version = "*", allow-prereleases = true}
 freezegun = "*"
 tox = "*"
+
+[tool.poetry.extras]
+heroku = ["gunicorn", "psycopg2", "whitenoise", "dj_database_url"]
 
 [build-system]
 requires = ["poetry>=0.12"]

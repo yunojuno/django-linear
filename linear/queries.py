@@ -38,7 +38,7 @@ def parse_issue_node(issue_data: dict) -> LinearIssue:
         team_name=team.get("name"),
         project_name=project.get("name", ""),
         milestone_name=milestone.get("name", ""),
-        title=title,
+        title=title[:100],
         estimate=estimate,
         assignee_name=assignee.get("name", ""),
         state=state.get("name", ""),

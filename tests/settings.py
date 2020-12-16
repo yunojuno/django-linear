@@ -14,7 +14,7 @@ DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": "test.d
 
 ALLOWED_HOSTS = (".ngrok.io", "127.0.0.1")
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -22,7 +22,7 @@ INSTALLED_APPS = (
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "linear",
-)
+]
 
 MIDDLEWARE = [
     # default django middleware
@@ -52,7 +52,7 @@ TEMPLATES = [
 
 STATIC_URL = "/static/"
 
-SECRET_KEY = "secret"
+SECRET_KEY = "TESTING_ONLY_DO_NOT_DEPLOY"
 
 LOGGING = {
     "version": 1,

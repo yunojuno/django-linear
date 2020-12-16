@@ -1,0 +1,42 @@
+{
+    "name": "Django ❤️ Linear",
+    "description": "A Django app for viewing Linear issues",
+    "repository": "https://github.com/yunojuno/django-linear",
+    "scripts": {
+        "postdeploy": "python manage.py migrate"
+    },
+    "env": {
+        "DJANGO_SETTINGS_MODULE": {
+            "description": "Location of the settings (fixed)",
+            "value": "heroku.settings",
+            "required": true
+        },
+        "SECRET_KEY": {
+            "generator": "secret"
+        },
+        "LINEAR_API_KEY": {
+            "description": "Your personal Linear API key",
+            "required": true
+        },
+        "LINEAR_WORKSPACE_NAME": {
+            "description": "Your Linear workspace name",
+            "required": true
+        },
+        "LINEAR_API_PAGE_SIZE": {
+            "description": "The number of issues to retrieve per API request",
+            "required": false,
+            "value": 100
+        }
+    },
+    "addons": [
+        {
+            "plan": "heroku-postgresql:hobby-dev",
+            "as": "DATABASE"
+        }
+    ],
+    "buildpacks": [
+        {
+            "url": "https://github.com/heroku/heroku-buildpack-python"
+        }
+    ]
+}
