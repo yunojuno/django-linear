@@ -1,0 +1,3 @@
+{% load i18n admin_urls %} {% block object-tools-items %} {% if has_absolute_url %}
+<li><a href="{{ absolute_url }}" class="viewsitelink">{% translate "View on site" %}</a></li>
+{% endif %} {% endblock %}
