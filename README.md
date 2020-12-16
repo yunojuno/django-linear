@@ -83,3 +83,9 @@ The page size to use when importing issues - defaults to 100, the max allowed by
 
 Your workspace name is optional, but it is used in the admin site to provide a link from the object
 page to Linear - overriding the Django "View on site" link.
+
+### Deployment to Heroku
+
+This project also contains everything it needs to be deployed directly to Heroku.
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
