@@ -1,10 +1,10 @@
 from django.contrib import admin
 
-from .models import LinearTask
+from .models import LinearIssue
 
 
-@admin.register(LinearTask)
-class LinearTaskAdmin(admin.ModelAdmin):
+@admin.register(LinearIssue)
+class LinearIssueAdmin(admin.ModelAdmin):
     list_display = (
         "identifier",
         "title",
@@ -22,3 +22,14 @@ class LinearTaskAdmin(admin.ModelAdmin):
         "project_name",
     )
     search_fields = ("project_name", "identifier")
+    readonly_fields = (
+        "id",
+        "team_name",
+        "project_name",
+        "identifier",
+        "title",
+        "milestone_name",
+        "assignee_name",
+        "estimate",
+        "state",
+    )

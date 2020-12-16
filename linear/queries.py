@@ -4,7 +4,7 @@ import requests
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 
-from linear.models import LinearTask
+from linear.models import LinearIssue
 
 PAGE_SIZE = getattr(settings, "LINEAR_API_PAGE_SIZE", 100)
 
@@ -42,10 +42,10 @@ query ($pageSize: Int $after: String) {
 """
 
 PageInfoType = Dict[str, Union[str, bool]]
-PagedIssuesResponseType = Tuple[List[LinearTask], PageInfoType]
+PagedIssuesResponseType = Tuple[List[LinearIssue], PageInfoType]
 
 
-def fetch_tasks(
+def fetch_issues(
     page_size: int = PAGE_SIZE, after: Optional[str] = None, save: bool = False
 ) -> PagedIssuesResponseType:
     if not settings.LINEAR_API_KEY:
@@ -64,10 +64,10 @@ def fetch_tasks(
     )
     data = response.json()
     page_info = data["data"]["issues"]["pageInfo"]
-    tasks: List[LinearTask] = []
+    issues: List[LinearIssue] = []
     for issue in data["data"]["issues"]["nodes"]:
         if save:
-            tasks.append(LinearTask.objects.create_from_json(issue))
+            issues.append(LinearIssue.objects.create_from_json(issue))
         else:
-            tasks.append(LinearTask.objects.from_json(issue))
-    return tasks, page_info
+            issues.append(LinearIssue.objects.from_json(issue))
+    return issues, page_info
