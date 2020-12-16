@@ -32,4 +32,5 @@ class LinearIssueAdmin(admin.ModelAdmin):
         "assignee_name",
         "estimate",
         "state",
+        "last_refreshed_at",
     )

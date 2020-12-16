@@ -67,7 +67,8 @@ def fetch_issues(
     issues: List[LinearIssue] = []
     for issue in data["data"]["issues"]["nodes"]:
         if save:
-            issues.append(LinearIssue.objects.create_from_json(issue))
+            issue = LinearIssue.objects.create_from_json(issue)
         else:
-            issues.append(LinearIssue.objects.from_json(issue))
+            issue = LinearIssue.objects.from_json(issue)
+        issues.append(issue)
     return issues, page_info

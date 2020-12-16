@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from django.conf import settings
 from django.db import models
+from django.utils.timezone import now as tz_now
 
 
 class TShirtSizing(models.IntegerChoices):
@@ -33,6 +34,7 @@ class LinearIssueManager(models.Manager):
             estimate=estimate,
             assignee_name=assignee.get("name", ""),
             state=state.get("name", ""),
+            last_refreshed_at=tz_now()
         )
 
     def create_from_json(self, issue_data: dict) -> LinearIssue:
@@ -53,6 +55,7 @@ class LinearIssue(models.Model):
     estimate = models.IntegerField(choices=TShirtSizing.choices, null=True)
     assignee_name = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
+    last_refreshed_at = models.DateTimeField(null=True, blank=True, help_text="When this issue was last refreshed from Linear, via import or webhook")
 
     objects = LinearIssueManager()
 

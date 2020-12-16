@@ -3,6 +3,8 @@ import logging
 from django.http import HttpRequest, HttpResponse
 from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
+from django.utils.timezone import now as tz_now
+
 from .models import LinearIssue
 
 logger = logging.getLogger(__name__)
@@ -21,8 +23,7 @@ def webhook(request: HttpRequest) -> HttpResponse:
 
     """
     try:
-        payload = json.loads(request.body.decode('utf-8'))
-        body = payload["body"]
+        body = json.loads(request.body.decode('utf-8'))
         data = body["data"]
         _type = body["type"]
         if _type != "Issue":
@@ -49,5 +50,6 @@ def webhook(request: HttpRequest) -> HttpResponse:
     issue.estimate = estimate
     issue.team_name = team_name
     issue.identifier = identifier
+    issue.last_refreshed_at = tz_now()
     issue.save()
     return HttpResponse("Task updated")

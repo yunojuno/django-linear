@@ -12,6 +12,8 @@ USE_L10N = True
 
 DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": "test.db"}}
 
+ALLOWED_HOSTS = (".ngrok.io", "127.0.0.1")
+
 INSTALLED_APPS = (
     "django.contrib.admin",
     "django.contrib.auth",
