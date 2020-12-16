@@ -1,14 +1,14 @@
 [tool.poetry]
-name = "my-app"
+name = "django-linear"
 version = "0.1.0"
-description = "Project template for Django app, using Poetry."
+description = "Django app for importing Linear issues into the Django admin site."
 license = "MIT"
 authors = ["YunoJuno <code@yunojuno.com>"]
 maintainers = ["YunoJuno <code@yunojuno.com>"]
 readme = "README.md"
-homepage = "https://github.com/yunojuno/poetry-template"
-repository = "https://github.com/yunojuno/poetry-template"
-documentation = "https://github.com/yunojuno/poetry-template"
+homepage = "https://github.com/yunojuno/django-linear"
+repository = "https://github.com/yunojuno/django-linear"
+documentation = "https://github.com/yunojuno/django-linear"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Environment :: Web Environment",
@@ -22,11 +22,12 @@ classifiers = [
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
 ]
-packages = [{ include = "my_app" }]
+packages = [{ include = "linear" }]
 
 [tool.poetry.dependencies]
 python = "^3.7"
 django = "^2.2 || ^3.0"
+requests = "^2.25.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "*"

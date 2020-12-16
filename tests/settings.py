@@ -1,5 +1,5 @@
 from distutils.version import StrictVersion
-from os import path
+from os import getenv, path
 
 import django
 
@@ -19,7 +19,7 @@ INSTALLED_APPS = (
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "my_app",
+    "linear",
 )
 
 MIDDLEWARE = [
@@ -77,3 +77,8 @@ ROOT_URLCONF = "tests.urls"
 
 if not DEBUG:
     raise Exception("This settings file can only be used with DEBUG=True")
+
+# ======== APP SETTINGS
+LINEAR_API_KEY = getenv("LINEAR_API_KEY")
+LINEAR_API_PAGE_SIZE = getenv("LINEAR_API_PAGE_SIZE", 100)
+LINEAR_WORKSPACE_NAME = getenv("LINEAR_WORKSPACE_NAME")
