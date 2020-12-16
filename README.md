@@ -1,28 +1,32 @@
 # Django Linear
 
-Django app to display Linear issues via the Django admin site.
+Readonly access to Linear issues for users without a Linear account.
 
-This app is designed to enable 'readonly' user access to Linear issues via the standard Django admin
-site.
+This app is designed to enable 'readonly' user access to Linear issues via the Django admin site.
 
 ### Motivation
 
-We replaced our use of Jira with Linear a while back, and haven't looked back - we have "Dev",
-"Design" and "Data" teams, and we use Linear to manage work internally. However, one thing that
-would improve it for our use case (small company, lots of engaged internal stakeholders) would be
-the ability to share the status of issues more widely through the company. This doesn't need to be
-sophisticated, we don't need to accept edits / comments - it's just a status update - for any issue,
-who is working on it, what its status is, which cycle / project it is part of.
+We replaced our use of Jira with Linear a while back, and haven't looked back. However, one thing
+that would improve it for our use case (small dev / design team, with many engaged internal
+stakeholders) would be the ability to share the status of issues more widely through the company.
 
-The existing Google Sheets integration is almost good enough - but it should be possible to do
-something a little neater.
+This doesn't need to be sophisticated, we don't need to accept edits / comments - it's just a status
+update - for any issue, who is working on it, what its status is, which cycle / project it is part
+of.
+
+### Why bother?
+
+The existing Google Sheets integration is almost good enough - but having the data in Django means
+we can build additional functionality on top (custom notifications, alerts, reporting, etc.)
+
+That said - this project is mainly an excuse to explore the GraphQL API.
 
 ### Approach
 
 We have a large "backoffice" project written in Django, and all our internal staff have accounts set
 up, and know their way around the Django admin site. Linear has a GraphQL API. Putting these two
-together, it ought to be simple to be able to sync Linear updates to a Django model, and to surface
-those via the admin site.
+together, it ought to be simple to sync Linear updates to a Django model, and to surface those via
+the admin site.
 
 ![Screenshot of admin site](https://raw.githubusercontent.com/yunojuno/django-linear/master/screenshots/issue-list-view.png)
 
