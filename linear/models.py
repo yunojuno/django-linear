@@ -28,9 +28,11 @@ class LinearIssue(models.Model):
     estimate = models.IntegerField(choices=TShirtSizing.choices, null=True)
     assignee_name = models.CharField("assigned to", max_length=100)
     state = models.CharField(max_length=100)
+    created_at = models.DateTimeField(help_text="When this issue was created in Linear")
+    last_updated_at = models.DateTimeField(
+        help_text="When this issue was updated in Linear"
+    )
     last_refreshed_at = models.DateTimeField(
-        null=True,
-        blank=True,
         help_text=(
             "When this issue was last refreshed from Linear, via import or webhook"
         ),
@@ -53,3 +55,9 @@ class LinearIssue(models.Model):
     def save(self, *args: Any, **kwargs: Any) -> LinearIssue:
         super().save(*args, **kwargs)
         return self
+
+    def last_updated(self) -> str:
+        """Return humanised version of the last_updated_at timestamp."""
+        from django.contrib.humanize.templatetags import humanize
+
+        return humanize.naturalday(self.last_updated_at)

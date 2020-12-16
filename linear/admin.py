@@ -23,6 +23,8 @@ class LinearIssueAdmin(admin.ModelAdmin):
         "milestone_name",
         "assignee_name",
         "estimate",
+        "created_at",
+        "last_updated_at",
         "project_name",
     )
     search_fields = ("project_name", "identifier", "title")
@@ -36,6 +38,8 @@ class LinearIssueAdmin(admin.ModelAdmin):
         "assignee_name",
         "estimate",
         "state",
+        "created_at",
+        "last_updated_at",
         "last_refreshed_at",
     )
     actions = ("sync_issue",)

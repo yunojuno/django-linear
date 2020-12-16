@@ -30,6 +30,8 @@ def parse_issue_node(issue_data: dict) -> LinearIssue:
     estimate = issue_data["estimate"]
     assignee = issue_data["assignee"] or {}
     state = issue_data["state"]
+    created_at = issue_data["createdAt"]
+    last_updated_at = issue_data["updatedAt"]
     return LinearIssue(
         id=id,
         identifier=identifier,
@@ -40,6 +42,8 @@ def parse_issue_node(issue_data: dict) -> LinearIssue:
         estimate=estimate,
         assignee_name=assignee.get("name", ""),
         state=state.get("name", ""),
+        created_at=created_at,
+        last_updated_at=last_updated_at,
     )
 
 
@@ -93,6 +97,8 @@ def fetch_issues(
             state {
               name
             }
+            createdAt
+            updatedAt
           }
           pageInfo {
             startCursor
