@@ -24,13 +24,7 @@ up, and know their way around the Django admin site. Linear has a GraphQL API. P
 together, it ought to be simple to be able to sync Linear updates to a Django model, and to surface
 those via the admin site.
 
-| ID    | Team        | Project        | Milestone     | Task            | Estimate | Assigned to | Status      |
-| ----- | ----------- | -------------- | ------------- | --------------- | -------- | ----------- | ----------- |
-| DEV-1 | Development | Flux Capacitor | Test Run      | Build fuel pump | XL       | Doc         | In Progress |
-| DES-1 | Design      | Flux Capacitor | Investor Demo | Design logo     | L        | Marty       | In Progress |
-
-The advantage of having the data in Django is that we a.) get filtering by default, and b.) we can
-start adding user-related features.
+![Screenshot of admin site](https://raw.githubusercontent.com/yunojuno/django-linear/master/screenshots/issue-list-view.png)
 
 ### Principles
 
