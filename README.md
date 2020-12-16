@@ -33,9 +33,10 @@ the admin site.
 ### Principles
 
 1. Access is managed via existing Django authentication
-1. Data is readonly - if someone needs to edit a issue they should use Linear
-1. Users who require access to Linear should have a full ($) account - this is **not** a way to
-   bypass Linear fees
+1. Data is readonly - if someone needs to edit an issue they should use Linear
+1. Users who require access to Linear should have a full ($) account
+
+NB this is **not** a tool to bypass Linear fees. Please respect their hard work.
 
 ### How it works
 
