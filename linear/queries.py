@@ -141,6 +141,8 @@ def fetch_issue(id: str) -> LinearIssue:
           estimate
           assignee{name}
           state{name}
+          createdAt
+          updatedAt
         }
       }
     """
