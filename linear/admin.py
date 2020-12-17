@@ -2,7 +2,7 @@ from django.contrib import admin, messages
 from django.db.models.query import QuerySet
 from django.http.request import HttpRequest
 
-from linear.queries import fetch_issue
+from linear.queries import pull_issue
 
 from .models import LinearIssue
 
@@ -47,7 +47,7 @@ class LinearIssueAdmin(admin.ModelAdmin):
     def sync_issue(self, request: HttpRequest, queryset: QuerySet) -> None:
         count = queryset.count()
         for issue in queryset[:10]:
-            update = fetch_issue(str(issue.id))
+            update = pull_issue(str(issue.id))
             self.message_user(
                 request,
                 f"Issue {update.identifier} was successfully updated.",
