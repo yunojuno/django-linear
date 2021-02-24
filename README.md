@@ -84,6 +84,14 @@ The page size to use when importing issues - defaults to 100, the max allowed by
 Your workspace name is optional, but it is used in the admin site to provide a link from the object
 page to Linear - overriding the Django "View on site" link.
 
+### Roadmap
+
+There are a couple of other features we have working elsewhere that we are looking to roll into
+this project:
+
+- [ ] Inbound email integration (create issues from emails - for public feedback) (see #1)
+- [ ] Non-linear user dashboards - ability to subscribe to issues and see progress
+
 ### Deployment to Heroku
 
 This project also contains everything it needs to be deployed directly to Heroku.
