@@ -51,6 +51,7 @@ pre-commit = "*"
 black = {version = "*", allow-prereleases = true}
 freezegun = "*"
 tox = "*"
+types-requests = "*"
 
 [tool.poetry.extras]
 heroku = ["gunicorn", "psycopg2", "whitenoise", "dj_database_url"]
