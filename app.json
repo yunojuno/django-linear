@@ -26,6 +26,18 @@
             "description": "The number of issues to retrieve per API request",
             "required": false,
             "value": 100
+        },
+        "LINEAR_FEEDBACK_TEAM_ID": {
+            "description": "The team to assign new issues created from inbound emails",
+            "required": false
+        },
+        "LINEAR_FEEDBACK_LABEL_ID": {
+            "description": "The label to apply to new issues created from inbound emails",
+            "required": false
+        },
+        "ANYMAIL_WEBOOK_SECRET":{
+            "description": "The webhook secret used by Anymail to support inbound ",
+            "required": false
         }
     },
     "addons": [
