@@ -89,7 +89,7 @@ page to Linear - overriding the Django "View on site" link.
 There are a couple of other features we have working elsewhere that we are looking to roll into
 this project:
 
-- [ ] Inbound email integration (create issues from emails - for public feedback) (see #1)
+- [x] Inbound email integration (create issues from emails - for public feedback) (see #1)
 - [ ] Non-linear user dashboards - ability to subscribe to issues and see progress
 
 ### Deployment to Heroku

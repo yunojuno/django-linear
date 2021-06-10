@@ -1,3 +1,5 @@
+# THIS FILE IS AUTO-GENERATED FROM POETRY AND IS FOR HEROKU DEPLOYMENTS ONLY
+# poetry export -f requirements.txt  -E heroku -o requirements.txt
 asgiref==3.3.4; python_version >= "3.6" \
     --hash=sha256:92906c611ce6c967347bbfea733f13d6313901d54dcca88195eaeb52b2a8e8ee \
     --hash=sha256:d1216dfbdfb63826470995d31caed36225dcaf34f182e0fa257a4dd9e86f1b78
@@ -16,10 +18,6 @@ django-anymail==8.3; python_version >= "3.5" \
 django==3.2.4; python_version >= "3.6" \
     --hash=sha256:ea735cbbbb3b2fba6d4da4784a0043d84c67c92f1fdf15ad6db69900e792c10f \
     --hash=sha256:66c9d8db8cc6fe938a28b7887c1596e42d522e27618562517cc8929eb7e7f296
-email-reply-parser==0.5.12 \
-    --hash=sha256:d051cfa8f54046f7399553aae57f17f62bf1652f83e3e9970fd109c0f24a880c \
-    --hash=sha256:3499c02284679e020acf8aa30ef9e43c62f9ab5ccee0a35bfac85a0c1fa685fd \
-    --hash=sha256:9dbf3eca69990932234f09e7f50aa73756574fc1f88e88c324fec1a741ee6a74
 gunicorn==20.1.0; python_version >= "3.5" \
     --hash=sha256:9dcc4547dbb1cb284accfb15ab5667a0e5d1881cc443e0677b4882a4067a807e \
     --hash=sha256:e0a968b5ba15f8a328fdfd7ab1fcb5af4470c28aaf7e55df02a99bc13138e6e8
