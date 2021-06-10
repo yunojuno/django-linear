@@ -7,7 +7,8 @@ exclude =
   .venv,
   .tox,
   tests,
-  migrations
+  migrations,
+  heroku
 
 ignore =
   # http://flake8.pycqa.org/en/2.5.5/warnings.html#warning-error-codes

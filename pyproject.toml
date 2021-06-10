@@ -31,6 +31,8 @@ dj_database_url = { version="*", optional=true }
 psycopg2 = { version="*", optional=true }
 gunicorn = { version="*", optional=true }
 whitenoise = { version="*", optional=true }
+django-anymail = "^8.3"
+email-reply-parser = "^0.5.12"
 
 
 [tool.poetry.dev-dependencies]

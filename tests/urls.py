@@ -7,4 +7,5 @@ admin.autodiscover()
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("linear/", include("linear.urls")),
+    path("anymail/", include("anymail.urls")),
 ]

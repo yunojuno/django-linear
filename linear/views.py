@@ -77,3 +77,7 @@ def webhook(request: HttpRequest) -> HttpResponse:
     issue.last_refreshed_at = tz_now()
     issue.save()
     return HttpResponse("Task updated")
+
+
+def inbound_email(request: HttpRequest) -> HttpResponse:
+    """Handle incoming emails and post as new issues."""

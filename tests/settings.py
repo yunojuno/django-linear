@@ -12,7 +12,7 @@ USE_L10N = True
 
 DATABASES = {"default": {"ENGINE": "django.db.backends.sqlite3", "NAME": "test.db"}}
 
-ALLOWED_HOSTS = (".ngrok.io", "127.0.0.1")
+ALLOWED_HOSTS = [".ngrok.io", "127.0.0.1"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -84,3 +84,10 @@ if not DEBUG:
 LINEAR_API_KEY = getenv("LINEAR_API_KEY")
 LINEAR_API_PAGE_SIZE = int(getenv("LINEAR_API_PAGE_SIZE", 100))
 LINEAR_WORKSPACE_NAME = getenv("LINEAR_WORKSPACE_NAME")
+LINEAR_FEEDBACK_TEAM_ID = getenv("LINEAR_FEEDBACK_TEAM_ID", None)
+LINEAR_FEEDBACK_LABEL_ID = getenv("LINEAR_FEEDBACK_LABEL_ID", None)
+LINEAR_WEBHOOK_SECRET = getenv("LINEAR_WEBHOOK_SECRET", None)
+# inbound email settings
+ANYMAIL = {
+    "WEBHOOK_SECRET": f"{LINEAR_WEBHOOK_SECRET}:{LINEAR_WEBHOOK_SECRET}",
+}
