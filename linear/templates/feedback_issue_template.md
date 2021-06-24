@@ -1,4 +1,3 @@
-{{ message.text }}
-
+{{ email_text }}
 ___
-Feedback via email from {{ message.from_email.address }}
+Feedback via email from {{ email_from }}

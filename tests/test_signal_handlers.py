@@ -59,5 +59,5 @@ def test_inbound_email__error(mock_create, event: AnymailInboundEvent) -> None:
 
 def test__render_description(message: AnymailInboundMessage) -> None:
     assert _render_description(message) == (
-        "Test email\n___\nFeedback via email from from@example.com"
+        "Test email\n___\nFeedback via email from from@example.com\n"
     )

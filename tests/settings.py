@@ -45,10 +45,12 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "django.contrib.auth.context_processors.auth",
                 "django.template.context_processors.request",
-            ]
+            ],
+            "string_if_invalid": "Invalid variable",
         },
     }
 ]
+TEMPLATE_DEBUG = True
 
 STATIC_URL = "/static/"
 

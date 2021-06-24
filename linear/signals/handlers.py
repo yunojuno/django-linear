@@ -41,4 +41,10 @@ def inbound_email(
 def _render_description(message: AnymailInboundMessage) -> str:
     """Render the issue description from the inbound message."""
     template = loader.get_template("feedback_issue_template.md")
-    return template.render({"message": message})
+    return template.render(
+        {
+            "email_from": message.from_email,
+            "email_subject": message.subject,
+            "email_text": message.text,
+        }
+    )
