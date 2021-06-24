@@ -1,12 +1,9 @@
 import json
 import logging
 
-from anymail.signals import AnymailInboundEvent, inbound
-from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
 from django.core.management import call_command
-from django.dispatch import receiver
 from django.http import HttpRequest, HttpResponse
 from django.http.response import HttpResponseRedirect
 from django.urls import reverse
@@ -15,7 +12,6 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 
 from .models import LinearIssue
-from .mutations import create_issue
 
 logger = logging.getLogger(__name__)
 
@@ -81,26 +77,3 @@ def webhook(request: HttpRequest) -> HttpResponse:
     issue.last_refreshed_at = tz_now()
     issue.save()
     return HttpResponse("Task updated")
-
-
-@receiver(inbound)
-def inbound_email(
-    sender: object,
-    event: AnymailInboundEvent,
-    esp_name: str,
-    **kwargs: object,
-) -> HttpResponse:
-    """Receive inbound email and create new issue."""
-    logger.info("Received inbound email from '%s'", event.message.from_email)
-    logger.debug(".. message text:\n%s", event.message.text)
-    logger.debug(".. message html:\n%s", event.message.html)
-    try:
-        return create_issue(
-            team_id=settings.LINEAR_FEEDBACK_TEAM_ID,
-            title=event.message.subject,
-            description=event.message.text,
-            label_id=settings.LINEAR_FEEDBACK_LABEL_ID,
-        )
-    except Exception:
-        logger.exception("Error processing inbound email.")
-    return HttpResponse("OK")
