@@ -19,4 +19,8 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 STATIC_ROOT = os.path.join(PROJECT_DIR, "../", "staticfiles")  # noqa
 
+LOGGING["loggers"]["linear"]["level"] = os.environ.get(  # type: ignore # noqa: F405
+    "LOGGING_LEVEL_LINEAR", "INFO"
+)
+
 DEBUG = False
