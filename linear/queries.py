@@ -157,3 +157,22 @@ def fetch_issue(id: str) -> LinearIssue:
 def pull_issue(id: str) -> LinearIssue:
     """Fetch an issue by id from the Linear API and save locally."""
     return fetch_issue(id=id).save()
+
+
+def get_subscriber_id(email: str) -> str:
+    """Lookup the subscriberId from inbound email address."""
+    query = """
+    query ($email:String!) {
+        users (filter: {email: { eqIgnoreCase: $email}}) {
+            nodes {
+                id
+                name
+            email
+            }
+        }
+    }
+    """
+    data = run_query(query, email=email)
+    if user_data := data["users"]["nodes"]:
+        return user_data[0]["id"]
+    return ""
