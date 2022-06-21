@@ -3,8 +3,6 @@ from os import getenv, path
 
 import django
 
-DJANGO_VERSION = StrictVersion(django.get_version())
-
 DEBUG = True
 TEMPLATE_DEBUG = True
 USE_TZ = True
