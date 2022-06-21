@@ -163,13 +163,13 @@ def get_subscriber_id(email: str) -> str:
     """Lookup the subscriberId from inbound email address."""
     query = """
     query ($email:String!) {
-        users (filter: {email: { eqIgnoreCase: $email}}) {
-            nodes {
-                id
-                name
-            email
-            }
+      users (filter: {email: { eqIgnoreCase: $email}}) {
+        nodes {
+          id
+          name
+          email
         }
+      }
     }
     """
     data = run_query(query, email=email)

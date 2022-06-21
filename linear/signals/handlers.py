@@ -8,6 +8,7 @@ from django.http import HttpResponse
 from django.template import loader
 
 from ..mutations import create_issue
+from ..queries import get_subscriber_id
 
 logger = logging.getLogger(__name__)
 
@@ -25,11 +26,13 @@ def inbound_email(
     logger.debug(".. message text:\n%s", message.text)
     logger.debug(".. message html:\n%s", message.html)
     try:
+        subscriber_id = get_subscriber_id(message.from_email.addr_spec)
         create_issue(
             team_id=settings.LINEAR_FEEDBACK_TEAM_ID,
             title=message.subject,
             description=_render_description(message),
             label_id=settings.LINEAR_FEEDBACK_LABEL_ID,
+            subscriber_id=subscriber_id,
         )
     except Exception as ex:
         logger.exception("Error processing inbound email.")

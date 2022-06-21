@@ -37,19 +37,28 @@ def event(message) -> AnymailInboundEvent:
 
 @override_settings(LINEAR_FEEDBACK_TEAM_ID="123", LINEAR_FEEDBACK_LABEL_ID="456")
 @mock.patch("linear.signals.handlers.create_issue")
-def test_inbound_email(mock_create, event: AnymailInboundEvent) -> None:
+@mock.patch("linear.signals.handlers.get_subscriber_id")
+def test_inbound_email(
+    mock_subscriber, mock_create, event: AnymailInboundEvent
+) -> None:
+    mock_subscriber.return_value = uuid.uuid4()
     resp = inbound_email(PostmarkInboundWebhookView, event, "postmark")
+    mock_subscriber.assert_called_once_with("from@example.com")
     assert resp.status_code == 200
     mock_create.assert_called_once_with(
         team_id="123",
         title="test subject",
         description=_render_description(event.message),
         label_id="456",
+        subscriber_id=mock_subscriber.return_value,
     )
 
 
 @mock.patch("linear.signals.handlers.create_issue")
-def test_inbound_email__error(mock_create, event: AnymailInboundEvent) -> None:
+@mock.patch("linear.signals.handlers.get_subscriber_id")
+def test_inbound_email__error(
+    mock_subscriber, mock_create, event: AnymailInboundEvent
+) -> None:
     # confirm that we still get a 200 even when there is an error.
     mock_create.side_effect = Exception("Unexpected item in the bagging area")
     resp = inbound_email(PostmarkInboundWebhookView, event, "postmark")
